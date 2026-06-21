@@ -111,7 +111,7 @@ sequenceDiagram
     participant Run as Runner (%TEMP%)
     participant Inno as InnoSetup installer
 
-    App->>App: Startup; abort if Debug build (§2.4)
+    App->>App: Startup, abort if Debug build (§2.4)
     App->>GH: GET /releases/latest (token auth) (§3)
     GH-->>App: Latest tag + single .exe asset
     App->>App: New tag? not already completed? (§3.4)

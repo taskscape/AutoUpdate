@@ -1,0 +1,9 @@
+{
+  "applicationId": "MyWebApp",
+  "repositoryUrl": "https://github.com/your-org/your-web-repo",
+  "githubToken": "ghp_replace_with_your_token",
+  "applicationType": "WebApp",
+  "installDirectory": "C:\\inetpub\\wwwroot\\MyWebApp",
+  "webRootPath": "C:\\inetpub\\wwwroot\\MyWebApp",
+  "serviceName": "AutoUpdater.MyWebApp"
+}

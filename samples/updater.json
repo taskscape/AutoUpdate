@@ -1,0 +1,10 @@
+{
+  "applicationId": "MyApp",
+  "repositoryUrl": "https://github.com/your-org/your-repo",
+  "githubToken": "ghp_replace_with_your_token",
+  "applicationType": "Desktop",
+  "updateMode": "Silent",
+  "installDirectory": "C:\\Program Files\\MyApp",
+  "webRootPath": null,
+  "serviceName": "AutoUpdater.MyApp"
+}

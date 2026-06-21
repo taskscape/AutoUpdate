@@ -1,0 +1,14 @@
+<Project>
+
+  <PropertyGroup>
+    <TargetFramework>net8.0-windows</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <TreatWarningsAsErrors>false</TreatWarningsAsErrors>
+    <Authors>AutoUpdater</Authors>
+    <Product>Universal Application Updater</Product>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
+</Project>

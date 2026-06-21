@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <UseWindowsForms>true</UseWindowsForms>
+    <RootNamespace>AutoUpdater.WinForms</RootNamespace>
+    <AssemblyName>AutoUpdater.WinForms</AssemblyName>
+
+    <IsPackable>true</IsPackable>
+    <PackageId>AutoUpdater.WinForms</PackageId>
+    <Description>WinForms prompt UI for the Universal Application Updater (single confirm dialog in Prompt mode).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoUpdater.Core\AutoUpdater.Core.csproj" />
+  </ItemGroup>
+
+</Project>

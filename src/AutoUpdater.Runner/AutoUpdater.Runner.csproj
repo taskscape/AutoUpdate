@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AutoUpdater.Runner</RootNamespace>
+    <AssemblyName>AutoUpdater.Runner</AssemblyName>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoUpdater.Core\AutoUpdater.Core.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Library</OutputType>
+    <RootNamespace>AutoUpdater.Core</RootNamespace>
+    <AssemblyName>AutoUpdater.Core</AssemblyName>
+
+    <!-- NuGet packaging (spec §1: distributed as a NuGet package) -->
+    <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
+    <IsPackable>true</IsPackable>
+    <PackageId>AutoUpdater.Core</PackageId>
+    <Description>Universal Application Updater client library for .NET 8 Windows apps (WinForms, Console, ASP.NET Core/IIS).</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Windows Event Log sink (spec §7). -->
+    <PackageReference Include="System.Diagnostics.EventLog" Version="8.0.1" />
+  </ItemGroup>
+
+</Project>

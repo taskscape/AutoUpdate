@@ -1,0 +1,18 @@
+## .NET / Visual Studio
+bin/
+obj/
+.vs/
+*.user
+*.suo
+
+## Build output
+artifacts/
+publish/
+installer/Output/
+
+## Rider / VS Code
+.idea/
+.vscode/
+
+## Local secrets (never commit real tokens)
+**/updater.local.json

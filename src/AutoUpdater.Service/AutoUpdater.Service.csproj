@@ -1,0 +1,70 @@
+<Project Sdk="Microsoft.NET.Sdk.Worker">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>AutoUpdater.Service</RootNamespace>
+    <AssemblyName>AutoUpdater.Service</AssemblyName>
+    <IsPackable>false</IsPackable>
+    <EnableDefaultEmbeddedResourceItems>false</EnableDefaultEmbeddedResourceItems>
+
+    <!--
+      Set EmbedRunner=true (typically at publish time, with a RuntimeIdentifier) to embed the
+      runner exe as a resource so the service can extract it to %TEMP% at runtime (spec §2.1).
+      Left off for plain 'dotnet build', where the dev side-by-side fallback is used instead.
+    -->
+    <EmbedRunner Condition="'$(EmbedRunner)' == ''">false</EmbedRunner>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.WindowsServices" Version="8.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\AutoUpdater.Core\AutoUpdater.Core.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup Condition="'$(EmbedRunner)' == 'true'">
+    <_EmbeddedRunnerDir>$(MSBuildProjectDirectory)\obj\embedded-runner\$(Configuration)\</_EmbeddedRunnerDir>
+    <_EmbeddedRunnerExe>$(_EmbeddedRunnerDir)AutoUpdater.Runner.exe</_EmbeddedRunnerExe>
+  </PropertyGroup>
+
+  <!--
+    Declared statically (so the resource-naming targets pick it up before compilation) but the
+    file itself is produced by the PublishRunnerForEmbedding target below. The LogicalName must
+    match RunnerLauncher.RunnerResourceName.
+  -->
+  <ItemGroup Condition="'$(EmbedRunner)' == 'true'">
+    <EmbeddedResource Include="$(_EmbeddedRunnerExe)">
+      <LogicalName>AutoUpdater.Service.runner.AutoUpdater.Runner.exe</LogicalName>
+      <Visible>false</Visible>
+    </EmbeddedResource>
+  </ItemGroup>
+
+  <!--
+    Publishes the runner as a framework-dependent SINGLE FILE (all its managed DLLs bundled into
+    one exe) into the path embedded above. Single-file is essential: only one file is extracted to
+    %TEMP% at runtime and it runs without sibling DLLs (spec §2.1). Runs before CoreCompile so the
+    file exists when the C# compiler embeds it.
+  -->
+  <Target Name="PublishRunnerForEmbedding"
+          BeforeTargets="BeforeCompile;CoreCompile"
+          Condition="'$(EmbedRunner)' == 'true'"
+          Outputs="$(_EmbeddedRunnerExe)">
+
+    <PropertyGroup>
+      <_RunnerRid Condition="'$(RuntimeIdentifier)' != ''">$(RuntimeIdentifier)</_RunnerRid>
+      <_RunnerRid Condition="'$(_RunnerRid)' == ''">win-x64</_RunnerRid>
+    </PropertyGroup>
+
+    <Message Importance="high" Text="Embedding runner (rid=$(_RunnerRid)) into AutoUpdater.Service..." />
+
+    <MSBuild Projects="..\AutoUpdater.Runner\AutoUpdater.Runner.csproj"
+             Targets="Publish"
+             Properties="Configuration=$(Configuration);TargetFramework=net8.0-windows;RuntimeIdentifier=$(_RunnerRid);SelfContained=false;PublishSingleFile=true;PublishDir=$(_EmbeddedRunnerDir)" />
+
+    <Error Condition="!Exists('$(_EmbeddedRunnerExe)')"
+           Text="Runner publish did not produce '$(_EmbeddedRunnerExe)'." />
+  </Target>
+
+</Project>

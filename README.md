@@ -130,7 +130,7 @@ sequenceDiagram
         Run->>Run: Mark tag current/completed (§5.1)
         Run->>App: Restart in user session / remove app_offline.htm
     else Failure
-        Run->>App: Recover; next startup retries (≤3) (§5.2/§5.3)
+        Run->>App: Recover, next startup retries (≤3) (§5.2/§5.3)
     end
     Run->>Run: Self-delete temp files (§2.1)
 ```

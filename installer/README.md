@@ -5,7 +5,7 @@ GitHub releases. The compiled installer is **both** the first-time installer and
 
 ## Prerequisites
 
-- .NET 8 SDK
+- .NET 10 SDK
 - [InnoSetup 6](https://jrsoftware.org/isinfo.php) (`iscc.exe` on your PATH)
 - A GitHub repository with releases enabled (private repos need a token in `updater.json`)
 

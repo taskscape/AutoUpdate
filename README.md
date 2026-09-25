@@ -1,6 +1,6 @@
 # Universal Application Updater
 
-A **.NET 8 (Windows)** library and service that keeps deployed applications automatically up to date
+A **.NET 10 (Windows)** library and service that keeps deployed applications automatically up to date
 from **GitHub Releases**. Drop the library into a WinForms, console, or ASP.NET Core (IIS) app, ship
 a small `updater.json`, and the app silently (or with a prompt) updates itself to the latest release
 on startup — including the privileged file replacement that normally requires an administrator.
@@ -44,7 +44,7 @@ process extracted to `%TEMP%`, with per-release **retry tracking** to avoid boot
 
 ## Key features
 
-- **Drop-in client library** (`AutoUpdater.Core`) referenced by any .NET 8 Windows app.
+- **Drop-in client library** (`AutoUpdater.Core`) referenced by any .NET 10 Windows app.
 - **GitHub Releases** as the distribution channel, with authenticated token support for **private
   repos** and higher rate limits.
 - **Privileged installs** via a per-app **Windows Service running as `SYSTEM`**.
@@ -320,7 +320,7 @@ back online — no manual IIS reset required.
 ## Requirements
 
 - **Windows** (x64). The service, runner session-launch, and Event Log are Windows-specific.
-- **.NET 8** runtime on target machines (binaries are framework-dependent).
+- **.NET 10** runtime on target machines (binaries are framework-dependent).
 - **InnoSetup 6** (`iscc`) to build installers.
 - A **GitHub repository** with releases; a token for private repos or higher rate limits.
 - Administrative rights **once**, at install time, to register the SYSTEM service.

@@ -9,12 +9,12 @@
     <GeneratePackageOnBuild>false</GeneratePackageOnBuild>
     <IsPackable>true</IsPackable>
     <PackageId>AutoUpdater.Core</PackageId>
-    <Description>Universal Application Updater client library for .NET 8 Windows apps (WinForms, Console, ASP.NET Core/IIS).</Description>
+    <Description>Universal Application Updater client library for .NET 10 Windows apps (WinForms, Console, ASP.NET Core/IIS).</Description>
   </PropertyGroup>
 
   <ItemGroup>
     <!-- Windows Event Log sink (spec §7). -->
-    <PackageReference Include="System.Diagnostics.EventLog" Version="8.0.1" />
+    <PackageReference Include="System.Diagnostics.EventLog" Version="10.0.0" />
   </ItemGroup>
 
 </Project>
